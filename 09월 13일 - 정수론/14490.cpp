@@ -34,7 +34,7 @@ string getResult(string s) {
 		else  check = true;
 	}
 
-	int g = gcdRecursion(stoi(x), stoi(y));  // 최대공약수 g
+	int g = gcdRecursion(max(stoi(x), stoi(y)), min(stoi(x), stoi(y)));  // 최대공약수 g
 
 	result = to_string(stoi(x) / g) + ":" + to_string(stoi(y) / g);
 
