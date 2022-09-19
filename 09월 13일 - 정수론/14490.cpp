@@ -14,6 +14,14 @@ int gcd(int x, int y) {
 	return 1;
 }
 
+int gcdRecursion(int a, int b) {
+	if (b == 0) {
+		return a;
+	}
+
+	return gcdRecursion(b, a % b);
+}
+
 string getResult(string s) {
 	string x, y, result;
 	bool check = false;
@@ -26,7 +34,7 @@ string getResult(string s) {
 		else  check = true;
 	}
 
-	int g = gcd(stoi(x), stoi(y));  // 최대공약수 g
+	int g = gcdRecursion(stoi(x), stoi(y));  // 최대공약수 g
 
 	result = to_string(stoi(x) / g) + ":" + to_string(stoi(y) / g);
 

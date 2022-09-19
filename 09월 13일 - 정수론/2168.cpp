@@ -12,9 +12,17 @@ int gcd(int a, int b) {
 	return 1;
 }
 
+int gcdRecursion(int a, int b) {
+	if (b == 0) {
+		return a;
+	}
+
+	return gcdRecursion(b, a % b);
+}
+
 int getNum(int x, int y) {
 	int result = 0;
-	int g = gcd(x, y);
+	int g = gcdRecursion(x, y);
 
 	result = g * (x / g + y / g - 1);  // gcd * (단위 직사각형의 가로 + 세로 - 1)
 
