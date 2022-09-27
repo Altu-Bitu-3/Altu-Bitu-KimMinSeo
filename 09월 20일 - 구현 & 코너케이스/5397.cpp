@@ -26,15 +26,16 @@ string printPW(string input) {
 			left.pop();
 		}
 
-		else if(input[i] >= 'A' && input[i] <= 'z') {  // 알파벳인 경우
-			left.push(input[i]);    
+		else if (input[i] >= 'A' && input[i] <= 'z'     // 알파벳인 경우
+			|| input[i] >= '0' && input[i] <= '9') {    // 숫자인 경우
+			left.push(input[i]);
 		}
 	}
 
 	// 최종 비밀번호 출력
 	string answer = "";
 	while (!left.empty()) {
-		answer = left.top() + answer;
+		right.push(left.top());
 		left.pop();
 	}
 
@@ -42,7 +43,7 @@ string printPW(string input) {
 		answer += right.top();
 		right.pop();
 	}
-	
+
 	return answer;
 }
 
