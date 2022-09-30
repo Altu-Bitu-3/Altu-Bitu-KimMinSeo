@@ -50,7 +50,7 @@ int main() {
 
 	for (int i = 0; i < n; i++) {      
 		check[i] = true;             
-		backTracking(i, 0, 0, 1);    // 출발지 도시는 방문하며 시작하므로 count = 1부터 시작
+		backTracking(i, i, 0, 1);    // 출발지 도시는 방문하며 시작하므로 count = 1부터 시작
 		check[i] = false; 
 	}
 	
