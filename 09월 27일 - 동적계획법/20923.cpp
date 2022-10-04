@@ -14,17 +14,28 @@ void win(string winner) {
 
 	if (winner == "su") {
 		while (!ground_d.empty()) {
-			card_s.push_back(ground_d.back());
+			card_s.push_front(ground_d.back());
 			ground_d.pop_back();
+		}
+
+		while (!ground_s.empty()) {
+			card_s.push_front(ground_s.back());
+			ground_s.pop_back();
 		}
 	}
 
 	if (winner == "do") {
 		while (!ground_s.empty()) {
-			card_d.push_back(ground_s.back());
+			card_d.push_front(ground_s.back());
 			ground_s.pop_back();
 		}
+
+		while (!ground_d.empty()) {
+			card_d.push_front(ground_d.back());
+			ground_d.pop_back();
+		}
 	}
+	return;
 }
 
 
@@ -34,8 +45,8 @@ string play(int m) {
 	while (true) {
 
 		// 도도 카드 내려놓기
-		ground_d.push_front(card_d.front());
-		card_d.pop_front();
+		ground_d.push_front(card_d.back());
+		card_d.pop_back();
 		if (card_d.empty()) break;               // 도도 카드 개수 0개 -> 수연 승리
 
 		if (ground_d.front() == 5) win("do");    // 도도 승리 
@@ -46,8 +57,8 @@ string play(int m) {
 		
 
 		// 수연 카드 내려놓기
-		ground_s.push_front(card_s.front());
-		card_s.pop_front();
+		ground_s.push_front(card_s.back());
+		card_s.pop_back();
 		if (card_s.empty()) break;               // 수연 카드 개수 0개 -> 도도 승리
 
 		if (ground_s.front() == 5) win("do");    // 도도 승리
@@ -57,10 +68,9 @@ string play(int m) {
 		else gameCnt++;
 	};
 
-	cout << card_d.size() << " ______" << card_s.size() << endl;
 
-	if (card_d.size() > card_s.size()) return "do!";
-	else if (card_d.size() < card_s.size()) return "su!";
+	if (card_d.size() > card_s.size()) return "do";
+	else if (card_d.size() < card_s.size()) return "su";
 	else return "dosu";
 }
 
